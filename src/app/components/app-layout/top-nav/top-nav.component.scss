@@ -1,0 +1,15 @@
+.top-nav {
+  mat-toolbar {
+    display: flex;
+    column-gap: 8px;
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+    .companyName {
+      text-decoration: none;
+    }
+    position: fixed;
+    z-index: 1;
+    top: 0;
+  }
+}

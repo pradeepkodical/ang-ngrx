@@ -1,0 +1,16 @@
+.page-layout {
+  mat-sidenav-container {
+    margin: 0;
+    border: 0;
+    mat-sidenav {
+      width: 220px;
+      margin: 0;
+      height: 100vh;
+    }
+
+    .footer {
+      padding: 16px 8px;
+      text-align: center;
+    }
+  }
+}

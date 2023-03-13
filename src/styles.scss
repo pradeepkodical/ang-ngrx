@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+// src/styles.scss
+
+@use "@angular/material" as mat;
+@use "./app/index" as appStyles;
+
+@import "styles-variables";
+@import "styles-reset";
+
+@include mat.core();
+
+@import "./themes/default-theme.scss";
+@import "./themes/light-theme.scss";
+
+@import "styles-reset.scss-theme";
+@import "./base-fields.scss";
+
+@mixin custom-components-theme($theme) {
+  @include appStyles.theme($theme);
+}
+
+@include mat.all-component-themes($anms-theme);
+@include custom-components-theme($anms-theme);
+
+.default-theme {
+  @include mat.all-component-colors($anms-theme);
+  @include custom-components-theme($anms-theme);
+}
+
+.light-theme {
+  @include mat.all-component-colors($anms-light-theme);
+  @include custom-components-theme($anms-light-theme);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

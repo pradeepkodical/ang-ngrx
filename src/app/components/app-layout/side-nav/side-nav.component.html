@@ -1,0 +1,27 @@
+<div class="side-nav">
+  <mat-toolbar color="primary">
+    <a mat-button>
+      <span>Site name</span>
+    </a>
+  </mat-toolbar>
+
+  <div class="scroll-container">
+    <div>
+      <mat-nav-list>
+        <mat-list-item
+          *ngFor="let link of links"
+          [activated]="link.isActive"
+          [routerLink]="link.url"
+        >
+          {{ link.title }}
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  </div>
+
+  <mat-toolbar color="primary" class="bottom-bar">
+    <a mat-button>
+      <span>bottom</span>
+    </a>
+  </mat-toolbar>
+</div>

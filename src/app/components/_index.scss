@@ -1,0 +1,5 @@
+@use "./app-layout/index" as appLayout;
+
+@mixin theme($theme) {
+  @include appLayout.theme($theme);
+}

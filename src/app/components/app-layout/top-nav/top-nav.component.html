@@ -1,0 +1,15 @@
+<div class="top-nav">
+  <mat-toolbar color="primary">
+    <div>
+      <button mat-icon-button (click)="doToggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button class="companyName" routerLink="/">
+      <span *ngIf="!opened">Site name</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div></div>
+  </mat-toolbar>
+</div>

@@ -1,0 +1,21 @@
+<pm-app-page>
+  <div>
+    <div>
+      <button mat-raised-button color="primary" (click)="doAddNew()">
+        Add New
+      </button>
+    </div>
+
+    <div class="products-container">
+      <div class="products-list" *ngIf="products$ | async as products">
+        <pm-products-list
+          [products]="products"
+          (doSelect)="doSelect($event)"
+        ></pm-products-list>
+      </div>
+      <div class="product-item" *ngIf="product$ | async as product">
+        <pm-product-edit [product]="product"></pm-product-edit>
+      </div>
+    </div>
+  </div>
+</pm-app-page>

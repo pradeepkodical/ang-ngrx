@@ -1,0 +1,5 @@
+@use "./components/index" as components;
+
+@mixin theme($theme) {
+  @include components.theme($theme);
+}

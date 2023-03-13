@@ -1,0 +1,9 @@
+@use "./side-nav/side-nav.component.scss-theme.scss" as sideNav;
+@use "./page-layout/page-layout.component.scss-theme.scss" as pageLayout;
+@use "./top-nav/top-nav.component.scss-theme.scss" as topNav;
+
+@mixin theme($theme) {
+  @include sideNav.theme($theme);
+  @include topNav.theme($theme);
+  @include pageLayout.theme($theme);
+}

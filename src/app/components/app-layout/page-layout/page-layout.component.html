@@ -1,0 +1,19 @@
+<div class="page-layout">
+  <mat-sidenav-container>
+    <mat-sidenav
+      color="primary"
+      #sidenav
+      mode="side"
+      [opened]="opened"
+      fixedInViewport="true"
+      (openedChange)="setOpened($event)"
+    >
+      <pm-side-nav></pm-side-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <pm-top-nav [opened]="opened" (toggle)="sidenav.toggle()"></pm-top-nav>
+      <router-outlet></router-outlet>
+      <div class="footer">All rights reserved</div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

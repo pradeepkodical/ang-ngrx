@@ -1,0 +1,11 @@
+mat-list-item {
+  &:hover {
+    border-radius: 16px !important;
+  }
+
+  &:focus,
+  &.active {
+    background: #eee;
+    border-radius: 16px !important;
+  }
+}

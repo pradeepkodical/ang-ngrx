@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-content>
+    <mat-action-list role="list">
+      <mat-list-item
+        role="listitem"
+        *ngFor="let p of products"
+        (click)="doSelect(p)"
+        [ngClass]="p.isSelected ? 'active' : ''"
+      >
+        <a>{{ p.productName }}</a>
+      </mat-list-item>
+    </mat-action-list>
+  </mat-card-content>
+</mat-card>
