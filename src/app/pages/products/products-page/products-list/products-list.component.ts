@@ -8,8 +8,14 @@ import { Product } from 'src/app/core/store';
 })
 export class ProductsListComponent {
   @Input('products') products: Array<Product> = [];
-  @Output('doSelect') onSelect = new EventEmitter<Product>();
+  @Output('onSelect') onSelect = new EventEmitter<Product>();
+  @Output('onAdd') onAdd = new EventEmitter();
+
   doSelect(product: Product) {
     this.onSelect.emit(product);
+  }
+
+  doAdd() {
+    this.onAdd.emit();
   }
 }

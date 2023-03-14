@@ -1,8 +1,7 @@
 .products-container {
   display: flex;
   grid-gap: 8px;
-  .products-list,
-  .product-item {
+  .products-list {
     flex: 1;
     position: sticky;
   }

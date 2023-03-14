@@ -1,0 +1,12 @@
+.product-edit {
+  .product-edit-fields {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer {
+    padding: 8px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

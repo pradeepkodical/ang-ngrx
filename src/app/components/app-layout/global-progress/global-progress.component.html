@@ -1,0 +1,5 @@
+<div *ngIf="isLoading$ | async as isLoading">
+  <div *ngIf="isLoading" class="spinner">
+    <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  </div>
+</div>

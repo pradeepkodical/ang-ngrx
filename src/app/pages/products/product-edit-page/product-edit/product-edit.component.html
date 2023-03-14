@@ -1,0 +1,31 @@
+<mat-card class="product-edit">
+  <mat-card-content>
+    <div *ngIf="theForm" [formGroup]="theForm" class="product-edit-fields">
+      <pm-text-field
+        label="Product name"
+        [control]="getControl('productName')!"
+        placeholder="Product name..."
+        type="text"
+      ></pm-text-field>
+
+      <pm-text-field
+        label="Billing price"
+        [control]="getControl('billingPrice')!"
+        placeholder="Billing price..."
+        type="number"
+      ></pm-text-field>
+
+      <pm-text-field
+        label="Cash price"
+        [control]="getControl('cashPrice')!"
+        placeholder="Cash price..."
+        type="number"
+      ></pm-text-field>
+    </div>
+  </mat-card-content>
+  <mat-card-footer class="footer">
+    <button mat-raised-button color="primary" (click)="onSaveChanges()">
+      Save
+    </button>
+  </mat-card-footer>
+</mat-card>

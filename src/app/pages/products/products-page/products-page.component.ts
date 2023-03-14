@@ -15,14 +15,11 @@ import {
 })
 export class ProductsPageComponent implements OnInit {
   products$?: Observable<Product[]>;
-  product$?: Observable<Product | undefined>;
 
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
     this.products$ = this.store.select(ProductsSelector.getProducts);
-    this.product$ = this.store.select(ProductsSelector.getCurrentProduct);
-
     this.store.dispatch(ProductsPageActions.loadProducts());
   }
 

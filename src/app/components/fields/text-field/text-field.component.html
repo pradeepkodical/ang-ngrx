@@ -1,0 +1,10 @@
+<mat-form-field floatLabel="always" *ngIf="control">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [placeholder]="placeholder"
+    [type]="type"
+    [formControl]="control!"
+  />
+  <mat-error *ngIf="control?.invalid">{{ label }} is invalid</mat-error>
+</mat-form-field>

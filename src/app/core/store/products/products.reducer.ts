@@ -40,11 +40,6 @@ export const productsReducer = createReducer<ProductsState>(
     ];
     return { ...state, products };
   }),
-  on(ProductsApiActions.loadProductsFailure, (state, action) => ({
-    ...state,
-    error: action.error,
-  })),
-
   on(ProductsPageActions.selectProduct, (state, action) => ({
     ...state,
     products: state.products.map((x) => ({
@@ -54,6 +49,11 @@ export const productsReducer = createReducer<ProductsState>(
     currentProductId: action.productId,
   })),
 
+  /*API Call back*/
+  on(ProductsApiActions.loadProductsFailure, (state, action) => ({
+    ...state,
+    error: action.error,
+  })),
   on(ProductsApiActions.setProducts, (state, action) => {
     const p = [...state.products];
     action.products.forEach((ap) => {
@@ -62,5 +62,17 @@ export const productsReducer = createReducer<ProductsState>(
       }
     });
     return { ...state, products: p };
-  })
+  }),
+  on(ProductsApiActions.saveProduct, (state, action) => {
+    return {
+      ...state,
+      products: state.products.map((p) =>
+        p.productId == action.product.productId ? action.product : p
+      ),
+    };
+  }),
+  on(ProductsApiActions.saveProductFailure, (state, action) => ({
+    ...state,
+    error: action.error,
+  }))
 );

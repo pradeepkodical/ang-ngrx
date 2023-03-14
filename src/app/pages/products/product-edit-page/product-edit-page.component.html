@@ -1,0 +1,10 @@
+<pm-app-page>
+  <div class="products-container">
+    <div class="product-item" *ngIf="product$ | async as product">
+      <pm-product-edit
+        [product]="product"
+        (onSaved)="doSaveProduct($event)"
+      ></pm-product-edit>
+    </div>
+  </div>
+</pm-app-page>

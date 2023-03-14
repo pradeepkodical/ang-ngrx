@@ -7,6 +7,7 @@ export const ProductsPageActions = createActionGroup({
     'Add New': emptyProps(),
     'Load Products': emptyProps(),
     'Select Product': props<{ productId: number }>(),
+    'Save Product': props<{ product: Product }>(),
   },
 });
 
@@ -15,5 +16,7 @@ export const ProductsApiActions = createActionGroup({
   events: {
     'Set Products': props<{ products: Array<Product> }>(),
     'Load Products Failure': props<{ error: any }>(),
+    'Save Product': props<{ product: Product }>(),
+    'Save Product Failure': props<{ error: any }>(),
   },
 });

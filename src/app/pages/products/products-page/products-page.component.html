@@ -1,0 +1,11 @@
+<pm-app-page>
+  <div class="products-container">
+    <div class="products-list" *ngIf="products$ | async as products">
+      <pm-products-list
+        [products]="products"
+        (onSelect)="doSelect($event)"
+        (onAdd)="doAddNew()"
+      ></pm-products-list>
+    </div>
+  </div>
+</pm-app-page>

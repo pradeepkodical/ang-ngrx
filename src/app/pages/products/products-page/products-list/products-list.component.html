@@ -1,11 +1,16 @@
 <mat-card>
+  <mat-card-header>
+    <span style="flex: 1"></span>
+    <button mat-raised-button color="primary" (click)="doAdd()">Add New</button>
+  </mat-card-header>
   <mat-card-content>
     <mat-action-list role="list">
       <mat-list-item
+        class="product-item"
         role="listitem"
         *ngFor="let p of products"
-        (click)="doSelect(p)"
         [ngClass]="p.isSelected ? 'active' : ''"
+        [routerLink]="[p.productId]"
       >
         <a>{{ p.productName }}</a>
       </mat-list-item>

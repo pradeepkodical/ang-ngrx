@@ -1,4 +1,5 @@
 <div class="page-layout">
+  <pm-global-progress></pm-global-progress>
   <mat-sidenav-container>
     <mat-sidenav
       color="primary"
@@ -12,6 +13,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <pm-top-nav [opened]="opened" (toggle)="sidenav.toggle()"></pm-top-nav>
+
       <router-outlet></router-outlet>
       <div class="footer">All rights reserved</div>
     </mat-sidenav-content>

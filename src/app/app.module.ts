@@ -10,12 +10,12 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { HomePageModule } from './pages/home-page/home-page.module';
 import { AppLayoutModule } from './components/app-layout/app-layout.module';
 import { StoreModule } from '@ngrx/store';
-import { homeReducer } from './pages/home-page/state/home.reducer';
 
 import { EffectsModule } from '@ngrx/effects';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { productsReducer, uiReducer } from './core/store';
 
 @NgModule({
   declarations: [AppComponent, AboutPageComponent],
@@ -30,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomePageModule,
     AppLayoutModule,
     StoreModule.forRoot({
-      home: homeReducer,
+      ui: uiReducer,
+      products: productsReducer,
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),

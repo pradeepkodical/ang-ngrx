@@ -1,0 +1,8 @@
+.products-container {
+  display: flex;
+  grid-gap: 8px;
+  .product-item {
+    flex: 1;
+    position: sticky;
+  }
+}
