@@ -17,15 +17,7 @@ import {
 export class ProductEditPageComponent {
   product$?: Observable<Product | undefined>;
 
-  constructor(private store: Store<State>, private route: ActivatedRoute) {
-    route.params.subscribe((x: any) => {
-      this.store.dispatch(
-        ProductsPageActions.selectProduct({
-          productId: parseInt(`${x.productId}`),
-        })
-      );
-    });
-  }
+  constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
     this.product$ = this.store.select(ProductsSelector.getCurrentProduct);

@@ -24,14 +24,16 @@ export class ProductService {
         'https://api.jsonbin.io/v3/b/64111eeface6f33a22eef403',
         this.getHeaders()
       )
-      .pipe(map((a) => a.record.products));
+      .pipe(map((a) => a.record.products as Array<Product>));
   }
 
   saveProductAsync(product: Product) {
-    return this.http.put<Product>(
-      'https://api.jsonbin.io/v3/b/64111eeface6f33a22eef403',
-      { products: [product] },
-      this.getHeaders()
-    );
+    return this.http
+      .put<any>(
+        'https://api.jsonbin.io/v3/b/64111eeface6f33a22eef403',
+        { products: [product] },
+        this.getHeaders()
+      )
+      .pipe(map((a) => product));
   }
 }

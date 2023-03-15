@@ -16,6 +16,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { productsReducer, uiReducer } from './core/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { routerReducer } from '@ngrx/router-store';
+import { CustomSerializer } from './core/store/router/custom-serializer';
 
 @NgModule({
   declarations: [AppComponent, AboutPageComponent],
@@ -32,9 +35,13 @@ import { productsReducer, uiReducer } from './core/store';
     StoreModule.forRoot({
       ui: uiReducer,
       products: productsReducer,
+      router: routerReducer,
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

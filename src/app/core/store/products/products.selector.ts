@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { RouterSelector } from '../router/router.selector';
 import { ProductsState } from './products.reducer';
 
 const getProductsFeatureState =
@@ -8,9 +9,12 @@ const getProducts = createSelector(getProductsFeatureState, (state) => {
   return state.products;
 });
 
-const getCurrentProductId = createSelector(getProductsFeatureState, (state) => {
-  return state.currentProductId;
-});
+const getCurrentProductId = createSelector(
+  RouterSelector.getCurrentRoute,
+  (state) => {
+    return parseInt(state.params['productId']);
+  }
+);
 
 const getCurrentProduct = createSelector(
   getProductsFeatureState,
