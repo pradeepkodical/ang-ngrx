@@ -20,12 +20,12 @@ import { productsReducer, uiReducer } from './core/store';
 @NgModule({
   declarations: [AppComponent, AboutPageComponent],
   imports: [
-    MatSlideToggleModule,
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
+    MatSlideToggleModule,
     AppRoutingModule,
     HomePageModule,
     AppLayoutModule,
