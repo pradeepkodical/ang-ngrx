@@ -1,11 +1,12 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { PaginationFilter } from '../app.state';
 import { Product } from './products.reducer';
 
 export const ProductsPageActions = createActionGroup({
   source: 'Products Page',
   events: {
     'Add New': emptyProps(),
-    'Load Products': emptyProps(),
+    'Update Filter': props<{ filter: PaginationFilter }>(),
     'Select Product': props<{ productId: number }>(),
     'Save Product': props<{ product: Product }>(),
   },

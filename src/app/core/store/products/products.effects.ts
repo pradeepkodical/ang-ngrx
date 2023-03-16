@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import {
   catchError,
-  concatMap,
+  switchMap,
   exhaustMap,
   finalize,
   map,
@@ -16,7 +16,6 @@ import { ProductService } from '../../services';
 import { UIPageActions } from '../ui/ui.actions';
 import { ProductsApiActions, ProductsPageActions } from './products.actions';
 import { State } from './products.reducer';
-import { ProductsSelector } from './products.selector';
 
 @Injectable()
 export class ProductsEffects {
@@ -27,12 +26,12 @@ export class ProductsEffects {
     private router: Router
   ) {}
 
-  loadProducts$ = createEffect(() => {
+  updateFilter$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ProductsPageActions.loadProducts),
+      ofType(ProductsPageActions.updateFilter),
       tap(() => this.store.dispatch(UIPageActions.showLoading())),
-      mergeMap(() =>
-        this.productService.getProductsAsync().pipe(
+      switchMap((action) =>
+        this.productService.getProductsAsync(action.filter).pipe(
           map((products) => ProductsApiActions.setProducts({ products })),
           catchError((error) =>
             of(ProductsApiActions.loadProductsFailure({ error }))

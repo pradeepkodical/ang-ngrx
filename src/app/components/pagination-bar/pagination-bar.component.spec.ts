@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AboutPageComponent } from './about-page.component';
+import { PaginationBarComponent } from './pagination-bar.component';
 
-describe('AboutPageComponent', () => {
-  let component: AboutPageComponent;
-  let fixture: ComponentFixture<AboutPageComponent>;
+describe('PaginationBarComponent', () => {
+  let component: PaginationBarComponent;
+  let fixture: ComponentFixture<PaginationBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AboutPageComponent ]
+      declarations: [ PaginationBarComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AboutPageComponent);
+    fixture = TestBed.createComponent(PaginationBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

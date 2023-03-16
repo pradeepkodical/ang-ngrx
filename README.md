@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Understanding rxjs map operators
+
+    import { of, from, delay} from 'rxjs';
+    import { switchMap, concatMap, mergeMap, exhaustMap } from 'rxjs/operators';
+
+    const emmiter= operator => () =>
+        from([0,1,2,3,4])
+        .pipe(
+    	    operator(x => of(x).pipe(delay(500)))
+        )
+        .subscribe((x) => console.log(`${operator.name} ${x}`));
+
+    const mm = emmiter(mergeMap);
+    const cm = emmiter(concatMap);
+    const sm = emmiter(switchMap);
+    const em = emmiter(exhaustMap);
+
+    //Execute one by one to see the output.
+    mm();
+    cm();
+    sm();
+    em();

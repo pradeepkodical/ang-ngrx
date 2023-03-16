@@ -26,6 +26,7 @@ import { ProductsListComponent } from './products-page/products-list/products-li
 import { ProductEditPageComponent } from './product-edit-page/product-edit-page.component';
 import { ProductEditComponent } from './product-edit-page/product-edit/product-edit.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { PaginationBarModule } from 'src/app/components/pagination-bar/pagination-bar.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,8 @@ import { ProductsRoutingModule } from './products-routing.module';
     ReactiveFormsModule,
 
     AppLayoutModule,
+
+    PaginationBarModule,
 
     ProductsRoutingModule,
     StoreModule.forFeature('products', productsReducer),

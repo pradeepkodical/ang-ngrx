@@ -5,6 +5,7 @@ import { ProductsApiActions, ProductsPageActions } from './products.actions';
 export interface ProductsState {
   products: Product[];
   currentProductId?: number | null;
+  filter: AppState.PaginationFilter;
 }
 
 export interface State extends AppState.State {
@@ -23,11 +24,19 @@ export interface Product {
 const initialState: ProductsState = {
   products: [],
   currentProductId: null,
+  filter: {
+    pageSize: 0,
+    pageNo: 0,
+    total: 0,
+  },
 };
 
 export const productsReducer = createReducer<ProductsState>(
   initialState,
 
+  on(ProductsPageActions.updateFilter, (state, action) => {
+    return { ...state, filter: action.filter };
+  }),
   on(ProductsPageActions.addNew, (state) => {
     const products = [
       ...state.products,
@@ -55,13 +64,7 @@ export const productsReducer = createReducer<ProductsState>(
     error: action.error,
   })),
   on(ProductsApiActions.setProducts, (state, action) => {
-    const p = [...state.products];
-    action.products.forEach((ap) => {
-      if (!p.find((a) => a.productId === ap.productId)) {
-        p.push(ap);
-      }
-    });
-    return { ...state, products: p };
+    return { ...state, products: action.products };
   }),
   on(ProductsApiActions.saveProduct, (state, action) => {
     return {

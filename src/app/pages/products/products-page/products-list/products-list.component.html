@@ -15,5 +15,11 @@
         <a>{{ p.productName }}</a>
       </mat-list-item>
     </mat-action-list>
+    <pm-pagination-bar
+      [pageNo]="pageNo"
+      [total]="total"
+      [pageSize]="pageSize"
+      (onChange)="doChange($event)"
+    ></pm-pagination-bar>
   </mat-card-content>
 </mat-card>

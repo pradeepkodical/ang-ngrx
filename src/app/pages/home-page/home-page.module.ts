@@ -13,6 +13,7 @@ import { HomePageComponent } from './home-page.component';
 import { AppLayoutModule } from 'src/app/components/app-layout/app-layout.module';
 import { StoreModule } from '@ngrx/store';
 import { homeReducer } from './state/home.reducer';
+import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
   declarations: [DashboardComponent, HomePageComponent],
@@ -26,6 +27,7 @@ import { homeReducer } from './state/home.reducer';
     LayoutModule,
     MatSlideToggleModule,
     AppLayoutModule,
+    HomeRoutingModule,
     StoreModule.forFeature('home', homeReducer),
   ],
   exports: [HomePageComponent],

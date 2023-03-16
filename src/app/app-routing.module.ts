@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutPageComponent } from './pages/about-page/about-page.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomePageComponent,
-  },
-  {
-    path: 'about',
-    component: AboutPageComponent,
+    loadChildren: () =>
+      import('./pages/home-page/home-page.module').then(
+        (m) => m.HomePageModule
+      ),
   },
   {
     path: 'products',
@@ -19,11 +16,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomePageComponent,
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
   {
     path: '**',
-    component: HomePageComponent,
+    redirectTo: 'home',
   },
 ];
 

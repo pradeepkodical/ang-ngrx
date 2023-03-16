@@ -32,8 +32,13 @@ const getCurrentProduct = createSelector(
   }
 );
 
+const getProductFilter = createSelector(getProductsFeatureState, (state) => {
+  return state.filter;
+});
+
 export const ProductsSelector = {
   getProducts,
   getCurrentProductId,
   getCurrentProduct,
+  getProductFilter,
 };

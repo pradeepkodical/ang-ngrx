@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, map, Observable, of, tap } from 'rxjs';
 import { Product } from '../store';
+import { PaginationFilter } from '../store/app.state';
 
 @Injectable()
 export class ProductService {
@@ -18,13 +19,27 @@ export class ProductService {
   }
   constructor(private http: HttpClient) {}
 
-  getProductsAsync() {
+  getProductsAsync(filter: PaginationFilter) {
     return this.http
       .get<any>(
         'https://api.jsonbin.io/v3/b/64111eeface6f33a22eef403',
         this.getHeaders()
       )
-      .pipe(map((a) => a.record.products as Array<Product>));
+      .pipe(
+        map((a) => {
+          const products = new Array<Product>();
+          for (let i = 0; i < 5; i++) {
+            const productId = filter.pageNo * filter.pageSize + i + 1;
+            products.push({
+              ...a.record.products[0],
+              productName: `${a.record.products[0].productName}-${productId}`,
+              productId,
+            });
+          }
+
+          return products;
+        })
+      );
   }
 
   saveProductAsync(product: Product) {
