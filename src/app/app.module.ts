@@ -12,7 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { productsReducer, uiReducer } from './core/store';
+import { UIEffects, uiReducer } from './core/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { routerReducer } from '@ngrx/router-store';
 import { CustomSerializer } from './core/store/router/custom-serializer';
@@ -27,7 +27,6 @@ import { CustomSerializer } from './core/store/router/custom-serializer';
     AppLayoutModule,
     StoreModule.forRoot({
       ui: uiReducer,
-      products: productsReducer,
       router: routerReducer,
     }),
     EffectsModule.forRoot([]),

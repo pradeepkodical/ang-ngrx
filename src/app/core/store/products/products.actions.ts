@@ -7,7 +7,7 @@ export const ProductsPageActions = createActionGroup({
   events: {
     'Add New': emptyProps(),
     'Update Filter': props<{ filter: PaginationFilter }>(),
-    'Select Product': props<{ productId: number }>(),
+    'Select Product': props<{ productId: string }>(),
     'Save Product': props<{ product: Product }>(),
   },
 });

@@ -12,7 +12,7 @@ const getProducts = createSelector(getProductsFeatureState, (state) => {
 const getCurrentProductId = createSelector(
   RouterSelector.getCurrentRoute,
   (state) => {
-    return parseInt(state.params['productId']);
+    return `${state.params['productId']}`;
   }
 );
 
@@ -20,9 +20,9 @@ const getCurrentProduct = createSelector(
   getProductsFeatureState,
   getCurrentProductId,
   (state, currentProductId) => {
-    if (currentProductId === 0) {
+    if (currentProductId === '0') {
       return {
-        productId: -(state.products.length + 1),
+        productId: `${-(state.products.length + 1)}`,
         productName: 'New Product',
         cashPrice: 0,
         billingPrice: 0,

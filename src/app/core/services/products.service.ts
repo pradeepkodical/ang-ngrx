@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as Airtable from 'airtable';
+import { AirtableBase } from 'airtable/lib/airtable_base';
 import { delay, map, Observable, of, tap } from 'rxjs';
 import { Product } from '../store';
-import { PaginationFilter } from '../store/app.state';
+import { PaginationFilter, PaginationResult } from '../store/app.state';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ProductService {
@@ -17,38 +20,57 @@ export class ProductService {
       },
     };
   }
-  constructor(private http: HttpClient) {}
+  airtable: Airtable;
+  constructor(private http: HttpClient) {
+    this.airtable = new Airtable({
+      apiKey: environment.apiKey,
+    });
+  }
 
   getProductsAsync(filter: PaginationFilter) {
-    return this.http
-      .get<any>(
-        'https://api.jsonbin.io/v3/b/64111eeface6f33a22eef403',
-        this.getHeaders()
-      )
-      .pipe(
-        map((a) => {
-          const products = new Array<Product>();
-          for (let i = 0; i < 5; i++) {
-            const productId = filter.pageNo * filter.pageSize + i + 1;
-            products.push({
-              ...a.record.products[0],
-              productName: `${a.record.products[0].productName}-${productId}`,
-              productId,
-            });
-          }
-
-          return products;
+    return new Observable<PaginationResult<Product>>((sub) => {
+      this.airtable
+        .base(environment.base)
+        .table(environment.products)
+        .select({
+          pageSize: filter.pageSize,
+          offset: filter.pageNo * filter.pageSize,
         })
-      );
+        .firstPage()
+        .then((data) =>
+          setTimeout(() => {
+            sub.next({
+              offset: '',
+              items: data.map((a: any) => ({
+                productId: a.id,
+                productName: a.fields.ProductName,
+                billingPrice: a.fields.BillingPrice,
+                cashPrice: a.fields.CashPrice,
+              })),
+            });
+          }, 1000)
+        );
+    });
   }
 
   saveProductAsync(product: Product) {
-    return this.http
-      .put<any>(
-        'https://api.jsonbin.io/v3/b/64111eeface6f33a22eef403',
-        { products: [product] },
-        this.getHeaders()
-      )
-      .pipe(map((a) => product));
+    return new Observable<Product>((sub) => {
+      this.airtable
+        .base(environment.base)
+        .table(environment.products)
+        .replace(product.productId, {
+          ProductName: product.productName,
+          CashPrice: parseFloat(`${product.cashPrice}`),
+          BillingPrice: parseFloat(`${product.billingPrice}`),
+        })
+        .then((data) =>
+          sub.next({
+            productId: data.id,
+            productName: `${data.fields['ProductName']}`,
+            billingPrice: parseFloat(`${data.fields['BillingPrice']}`),
+            cashPrice: parseFloat(`${data.fields['CashPrice']}`),
+          })
+        );
+    });
   }
 }

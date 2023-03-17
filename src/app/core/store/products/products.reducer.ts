@@ -4,7 +4,7 @@ import { ProductsApiActions, ProductsPageActions } from './products.actions';
 
 export interface ProductsState {
   products: Product[];
-  currentProductId?: number | null;
+  currentProductId?: string | null;
   filter: AppState.PaginationFilter;
 }
 
@@ -13,7 +13,7 @@ export interface State extends AppState.State {
 }
 
 export interface Product {
-  productId: number;
+  productId: string;
   productName: string;
   billingPrice: number;
   cashPrice: number;
@@ -41,7 +41,7 @@ export const productsReducer = createReducer<ProductsState>(
     const products = [
       ...state.products,
       {
-        productId: -state.products.length,
+        productId: `${-state.products.length}`,
         productName: `Product Name ${state.products.length}`,
         billingPrice: 100,
         cashPrice: 80,

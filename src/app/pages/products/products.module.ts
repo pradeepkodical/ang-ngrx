@@ -12,7 +12,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 
-import { productsReducer, ProductsEffects } from 'src/app/core/store';
+import {
+  productsReducer,
+  ProductsEffects,
+  UIEffects,
+} from 'src/app/core/store';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -57,7 +61,7 @@ import { PaginationBarModule } from 'src/app/components/pagination-bar/paginatio
 
     ProductsRoutingModule,
     StoreModule.forFeature('products', productsReducer),
-    EffectsModule.forFeature([ProductsEffects]),
+    EffectsModule.forFeature([ProductsEffects, UIEffects]),
   ],
   exports: [ProductsPageComponent, ProductEditPageComponent],
   providers: [ProductService],

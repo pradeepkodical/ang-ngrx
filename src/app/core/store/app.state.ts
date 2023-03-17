@@ -7,6 +7,11 @@ export interface PaginationFilter {
   total: number;
 }
 
+export interface PaginationResult<T> {
+  offset: string;
+  items: Array<T>;
+}
+
 export interface State {
   ui: UIState;
   router: RouterReducerState;

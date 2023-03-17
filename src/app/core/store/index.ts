@@ -9,6 +9,7 @@ export { productsReducer } from './products/products.reducer';
 export { State, ProductsState, Product } from './products/products.reducer';
 
 export { UIPageActions } from './ui/ui.actions';
+export { UIEffects } from './ui/ui.effects';
 export { UISelector } from './ui/ui.selector';
 export { uiReducer } from './ui/ui.reducer';
 
